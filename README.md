@@ -82,6 +82,28 @@ dist/文译/
 
 更多说明参见 [Windows 构建文档](docs/windows-build.md)。
 
+## 自动发布 Release
+
+GitHub Actions 会在推送 `v*` 格式的版本标签后自动执行测试、构建 Windows 发行包并创建 GitHub Release：
+
+```powershell
+git switch main
+git pull --ff-only origin main
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+构建完成后，仓库的 Releases 页面会包含：
+
+```text
+wenyi-gui-v0.1.0-windows-x64.zip
+wenyi-gui-v0.1.0-windows-x64.zip.sha256
+```
+
+也可以在 GitHub 的 `Actions` 页面手动运行 `Build Windows release`。手动运行只生成临时 Artifact，不会创建 Release；正式发布请使用版本标签。
+
+如果标签对应的工作流失败，修复后应发布一个新版本标签，不要重复覆盖已经公开的版本标签。
+
 ## 问题归属
 
 - GUI 界面、任务管理、桌面打包问题：提交到本仓库。

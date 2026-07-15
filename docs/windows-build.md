@@ -58,3 +58,14 @@ git -C vendor/wenyi rev-parse HEAD
 ```
 
 GitHub Actions 默认检出上游 `main` 最新版本。如需可复现发布，应在工作流的核心 checkout 步骤中设置固定的 `ref`。
+
+## GitHub Release
+
+推送 `v*` 版本标签会触发 `.github/workflows/build.yml`，自动创建 Release 并上传 ZIP 与 SHA-256 校验文件：
+
+```powershell
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+可以在仓库的 `Actions` 页面查看构建日志，在 `Releases` 页面下载最终产物。`workflow_dispatch` 手动运行仅用于验证构建，不会创建正式 Release。
