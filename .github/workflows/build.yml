@@ -1,0 +1,51 @@
+name: Build Windows release
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Checkout Wenyi core
+        uses: actions/checkout@v4
+        with:
+          repository: BigDawnGhost/wenyi
+          path: vendor/wenyi
+
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+          enable-cache: true
+
+      - name: Run GUI tests
+        run: uv run pytest
+
+      - name: Build application
+        shell: pwsh
+        run: ./build-windows.ps1
+
+      - name: Smoke test core executable
+        shell: pwsh
+        run: ./dist/文译/trans-novel.exe --help
+
+      - name: Create archive
+        shell: pwsh
+        run: Compress-Archive -Path ./dist/文译/* -DestinationPath ./dist/wenyi-gui-windows-x64.zip
+
+      - name: Upload executable
+        uses: actions/upload-artifact@v4
+        with:
+          name: wenyi-gui-windows-x64
+          path: ./dist/wenyi-gui-windows-x64.zip
+          if-no-files-found: error
+          retention-days: 14

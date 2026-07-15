@@ -1,0 +1,32 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+build/
+dist/
+*.spec
+.DS_Store
+
+# GUI 本地运行数据
+.runtime/
+settings.json
+recent_tasks.json
+task-configs/
+state/
+output/
+*.db
+
+# 输入书籍和生成产物
+*.zh.epub
+*.zh.txt
+*.txt
+*.epub
+*.fb2
+*.mobi
+*.azw3
+
+# vendor/wenyi 由开发者单独克隆，禁止嵌套仓库进入 GUI 提交
+vendor/wenyi/
+
