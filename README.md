@@ -1,8 +1,13 @@
 # Wenyi GUI
 
-Wenyi GUI 是 [Wenyi](https://github.com/BigDawnGhost/wenyi) 的第三方桌面图形界面，由本仓库独立维护。GUI 使用 PySide6 构建，并通过子进程调用 Wenyi CLI。
+Wenyi GUI 是 [Wenyi](https://github.com/BigDawnGhost/wenyi) 的第三方 Windows 桌面图形界面，由本仓库独立维护。GUI 使用 PySide6 构建，并通过子进程调用 Wenyi CLI。
 
 本项目不属于 Wenyi 官方仓库。为了在上游尚未发布 Python 包或核心可执行文件时仍可开发和构建，Wenyi 核心源码放在 `vendor/wenyi/`，但不会提交到本仓库。
+
+## 软件预览
+
+![主界面](images/image1.png)
+![设置界面](images/image2.png)
 
 ## 项目结构
 
